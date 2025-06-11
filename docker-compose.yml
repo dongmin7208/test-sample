@@ -5,3 +5,17 @@
       - "3001:3001"
     environment:
       - NODE_ENV=production
+
+  frontend:
+    build:
+      context: ./frontend
+      target: dev
+      args:
+        - VITE_GMAPS_KEY=${VITE_GMAPS_KEY}
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_GMAPS_KEY=${VITE_GMAPS_KEY}
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
